@@ -3,14 +3,24 @@
 class Panel {
     const MAX_CHARS_BY_LINE = 15;
     const HIDDEN_CHAR = "_";
+
+    private array $textToSolve;
     
-    public function __construct(private string $clue, private string $text){}
+    public function __construct(private string $clue, private string $text){
+        $this->textToSolve = [];
+        for($i = 0; $i < strlen($this->text); ++$i) {
+            $this->textToSolve[] = [$this->text[$i] => true];
+        }
+        var_dump($this->textToSolve);
+    }
     public function show() {
         $currentLineCharsNumber = 0;
-        //Can we iterate a string as an array with foreach?
-        //Explain why I decide TO NOT convert string to array
-        for($i = 0; $i < strlen($this->text); ++$i) {
-            if($this->text[$i] != " ") echo Panel::HIDDEN_CHAR;
+        foreach($this->textToSolve as $charToSolve) {
+            var_dump(key($charToSolve));
+            if($charToSolve)  {
+                if($isHidden) echo Panel::HIDDEN_CHAR;
+                else echo $charToSolve; 
+            }
             else $this->checkNewLine($currentLineCharsNumber);
             ++$currentLineCharsNumber;
         }

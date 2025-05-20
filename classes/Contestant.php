@@ -10,7 +10,11 @@ class Contestant {
     }
     public function sayLetter(): string { 
         //TODO: Check right input here. Just one char. Char must be an allowed letter.
-        return readline();
+        return strtoupper(readline());
+    }
+
+    public function getName(): string {
+        return $this->name;
     }
 }
 

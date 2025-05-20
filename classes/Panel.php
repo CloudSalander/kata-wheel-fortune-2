@@ -22,7 +22,6 @@ class Panel {
             else {
                 echo $this->textToSolve[$currentCharIndex];
                 $this->checkNewLine($currentCharIndex);
-            
             }
             ++$currentCharIndex;
         }

@@ -7,15 +7,11 @@ include('classes/Contestant.php');
 $panel1 = new Panel("Es van enamorar en un tren","Before Sunrise");
 $panel2 = new Panel("Lorca","La casa de Bernarda Alba");
 
-$panel1->show();
-echo PHP_EOL;
-$panel2->show();
+$contester1 = new Contestant("Pepe");
+$contester2 = new Contestant("Manolo");
+$contester3 = new Contestant("Luisa");
 
+$contest = new Contest($panel1, [$contester1,$contester2,$contester3]);
+print_r($contest);
 
-$contester1 = new Contestant("Pepe",0);
-$contester2 = new Contestant("Manolo",0);
-
-print_r($contester1);
-print_r($contester2);
-echo $contester1->sayLetter();
 ?>

@@ -11,7 +11,7 @@ class Panel {
         $this->textToSolve = [];
         for($i = 0; $i < strlen($text); ++$i) {
             $this->textToSolve[] = $text[$i];
-            $this->hiddenCharsMap[] = false;
+            $this->hiddenCharsMap[] = true;
         }
     }
     public function show() {

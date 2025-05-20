@@ -11,7 +11,7 @@ class Panel {
         $this->textToSolve = [];
         for($i = 0; $i < strlen($text); ++$i) {
             $this->textToSolve[] = $text[$i];
-            $this->hiddenCharsMap[] = true;
+            $this->hiddenCharsMap[] = false;
         }
     }
     public function show() {
@@ -28,6 +28,13 @@ class Panel {
         echo PHP_EOL.$this->clue;
     }
 
+    public function isSolved(): bool {
+        foreach($this->textToSolve as $index => $charToSolve) {
+            if($charToSolve != " " && $this->hiddenCharsMap[$index]) return false;
+        }
+        return true;
+    }
+
     private function checkNewLine(int $charsNumber): void  {
         if($charsNumber >= self::MAX_CHARS_BY_LINE) echo PHP_EOL;
         else echo " ";
@@ -36,6 +43,7 @@ class Panel {
     private function isHiddenChar(int $index): bool {
         return $this->textToSolve[$index] != " " && $this->hiddenCharsMap[$index];
     }
+
 } 
 
 ?>

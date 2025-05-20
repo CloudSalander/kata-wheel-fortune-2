@@ -12,6 +12,7 @@ $contester2 = new Contestant("Manolo");
 $contester3 = new Contestant("Luisa");
 
 $contest = new Contest($panel1, [$contester1,$contester2,$contester3]);
-print_r($contest);
+
+var_dump($panel2->isSolved());
 
 ?>

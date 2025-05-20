@@ -12,10 +12,10 @@ echo PHP_EOL;
 $panel2->show();
 
 
-/*
-$contest = new Contest();
-$contestant1 = new Contestant();
-print_r($contest);
-print_r($contestant1);
-*/
+$contester1 = new Contestant("Pepe",0);
+$contester2 = new Contestant("Manolo",0);
+
+print_r($contester1);
+print_r($contester2);
+echo $contester1->sayLetter();
 ?>

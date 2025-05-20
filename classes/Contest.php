@@ -11,9 +11,8 @@ class Contest {
     public function play(): void {
         while(!$this->panel->isSolved()) {
             $currentContestant = $this->turnNumber % self::CONTESTANTS_NUMBER;
-            var_dump($currentContestant);
-            $this->contestants[$currentContestant]->sayLetter(); 
-            ++$this->turnNumber;
+            $currentLetter = $this->contestants[$currentContestant]->sayLetter();
+            if(!$this->panel->solveLetter($currentLetter)) ++$this->turnNumber;
         }
         echo "The winner is...";
     }

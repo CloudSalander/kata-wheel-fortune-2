@@ -9,6 +9,7 @@ class Panel {
     
     public function __construct(private string $clue, string $text) {
         $this->textToSolve = [];
+        $text = strtoupper($text);
         for($i = 0; $i < strlen($text); ++$i) {
             $this->textToSolve[] = $text[$i];
             $this->hiddenCharsMap[] = true;
@@ -32,6 +33,13 @@ class Panel {
         foreach($this->textToSolve as $index => $charToSolve) {
             if($charToSolve != " " && $this->hiddenCharsMap[$index]) return false;
         }
+        return true;
+    }
+
+    public function solveLetter(string $letter): bool {
+        echo $letter." ".$this->textToSolve;
+        $found_indexs = array_keys($this->textToSolve,$letter,true);
+        var_dump($found_indexs); 
         return true;
     }
 

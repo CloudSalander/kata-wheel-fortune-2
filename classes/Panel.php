@@ -37,10 +37,12 @@ class Panel {
     }
 
     public function solveLetter(string $letter): bool {
-        echo $letter." ".$this->textToSolve;
-        $found_indexs = array_keys($this->textToSolve,$letter,true);
-        var_dump($found_indexs); 
-        return true;
+        $foundIndexs = array_keys($this->textToSolve,$letter,true);
+        if(count($foundIndexs) > 0) {
+            $showedLetters =$this->showLetters($foundIndexs);
+            if($showedLetters > 0) return true; 
+        } 
+        return false;
     }
 
     private function checkNewLine(int $charsNumber): void  {
@@ -50,6 +52,17 @@ class Panel {
 
     private function isHiddenChar(int $index): bool {
         return $this->textToSolve[$index] != " " && $this->hiddenCharsMap[$index];
+    }
+
+    private function showLetters(array $found_indexs): int {
+        $showedLetters = 0;
+        foreach($found_indexs as $found_index) {
+            if($this->hiddenCharsMap[$found_index]) {
+                $this->hiddenCharsMap[$found_index] = false;
+                ++$showedLetters;
+            }
+        }
+        return $showedLetters;
     }
 
 } 

@@ -5,24 +5,25 @@ class Panel {
     const HIDDEN_CHAR = "_";
 
     private array $textToSolve;
+    private array $hiddenCharsMap;
     
-    public function __construct(private string $clue, private string $text){
+    public function __construct(private string $clue, string $text) {
         $this->textToSolve = [];
-        for($i = 0; $i < strlen($this->text); ++$i) {
-            $this->textToSolve[] = [$this->text[$i] => true];
+        for($i = 0; $i < strlen($text); ++$i) {
+            $this->textToSolve[] = $text[$i];
+            $this->hiddenCharsMap[] = true;
         }
-        var_dump($this->textToSolve);
     }
     public function show() {
-        $currentLineCharsNumber = 0;
-        foreach($this->textToSolve as $charToSolve) {
-            var_dump(key($charToSolve));
-            if($charToSolve)  {
-                if($isHidden) echo Panel::HIDDEN_CHAR;
-                else echo $charToSolve; 
+        $currentCharIndex = 0;
+        while($currentCharIndex < count($this->textToSolve)) {
+            if($this->isHiddenChar($currentCharIndex)) echo Panel::HIDDEN_CHAR; 
+            else {
+                echo $this->textToSolve[$currentCharIndex];
+                $this->checkNewLine($currentCharIndex);
+            
             }
-            else $this->checkNewLine($currentLineCharsNumber);
-            ++$currentLineCharsNumber;
+            ++$currentCharIndex;
         }
         echo PHP_EOL.$this->clue;
     }
@@ -30,6 +31,10 @@ class Panel {
     private function checkNewLine(int $charsNumber): void  {
         if($charsNumber >= self::MAX_CHARS_BY_LINE) echo PHP_EOL;
         else echo " ";
+    }
+
+    private function isHiddenChar(int $index): bool {
+        return $this->textToSolve[$index] != " " && $this->hiddenCharsMap[$index];
     }
 } 
 
